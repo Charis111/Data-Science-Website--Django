@@ -1,0 +1,71 @@
+
+      
+   
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+<li><a href="/">Home</a></li>
+
+{% if user.is_authenticated %}
+
+<li><a href="/">{{user.username|title}}</a></li>
+<li><a href="/logout">Logout</a></li>
+
+
+<li><a class="modal-trigger" href="#modal">Market</a></li>
+
+
+
+
+<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Instagram"> 
+  <i class="fab fa-instagram"></i>
+</a></li>
+<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Facebook">
+  <i class="fab fa-facebook"></i>
+</a></li>
+<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Twitter">
+  <i class="fab fa-twitter"></i>
+</a></li>
+
+<ul class="sidenav grey lighten-2" id="mobile-menu">
+  <li><a href="/account">{{user.username|title}}</a></li>
+  <li><a href="/logout">Logout</a></li>
+  <li><a href="#service">Services</a></li>
+  <li><a href="#contact">Contact</a></li>  
+</ul>
+
+{% else %}
+
+<li><a href="/register">Sign Up</a></li>
+<li><a href="/login">Login</a></li>
+<li><a href="#service">Services</a></li>
+<li><a href="#contact">Contact</a></li>
+
+<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Instagram"> 
+  <i class="fab fa-instagram"></i>
+</a></li>
+<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Facebook">
+  <i class="fab fa-facebook"></i>
+</a></li>
+<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Twitter">
+  <i class="fab fa-twitter"></i>
+</a></li>
+
+{% endif %}
+
+
+</ul>
+<ul class="sidenav grey lighten-2" id="mobile-menu">
+  <li><a href="/register">Sign Up</a></li>
+  <li><a href="/login">Login</a></li>
+  <li><a href="#service">Services</a></li>
+  <li><a href="#contact">Contact</a></li>
+  
+</ul>
+
+
+
+

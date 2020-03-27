@@ -1,0 +1,51 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+
+<!-- FONT AWESOME WIDGETSS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<style type="text/css">
+	form{
+      padding-top: 60px; 
+      position: center;
+      background-size: cover;
+      background-position: center;
+      min-height: 1000px;
+      top: 100%
+     /* opacity:0.85;*/
+      
+}
+@media screen and (max-width: 670px){
+  div{
+        min-height: 500px;
+      }
+
+	
+</style>
+
+
+<div class="container" >
+        <form method="POST" action="{% url 'main:create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+            <input type="submit" value="Submit">
+
+        </form>
+        
+</div>
+
+   
+
+
+
+
+
+
+    

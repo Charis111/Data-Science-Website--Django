@@ -1,0 +1,607 @@
+<head>
+    {% load static %}
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+
+<!-- FONT AWESOME WIDGETSS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+   
+
+<!-- slider/footer css style -->
+<style type="text/css">
+header{
+      background: url(static/bitcoin2.jpg); 
+      background-size: cover;
+      background-position: center;
+      min-height: 1000px;
+      top: 100%
+     /* opacity:0.85;*/
+      
+}
+@media screen and (max-width: 670px){
+  header{
+        min-height: 500px;
+      }
+
+      
+}
+.styling{
+  color: black;
+}
+.collection{
+  display: block;
+}
+.section{
+  padding-top: 4vw;
+  padding-bottom: 4vw;
+
+      
+}
+.tabs .indicator{
+  background-color: #1a237e;
+      
+}
+.tabs .tab a:focus, .tabs .tab a:focus.active{
+   background: transparent;
+     
+}
+
+
+.landing-page{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+ 
+}
+.landing-page::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url(bitcoin0.jpg) no-repeat;
+  background-size: cover;
+  opacity: .3;
+  animation: anim 25s linear infinite;
+}
+@keyframes anim {
+  50%{
+    transform: scale(2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+.page-content{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+.page-content h1{
+  padding-top: 140;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 50px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.page-content p{
+  color: #fff;
+  margin-bottom: 20px;
+}
+.page-content a{
+  display: inline-block;
+  text-decoration: none;
+  color: #ff7979;
+  border: 2px solid #ff7979;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  transition: 0.4s linear;
+}
+.page-content a:hover{
+  color: #fff;
+  background: #ff7979;
+}
+
+a.grey-text:link {
+  text-decoration: none;
+}
+
+a.grey-text:visited {
+  text-decoration: none;
+}
+
+a.grey-text:hover {
+  text-decoration: underline;
+}
+
+a.grey-text:active {
+  text-decoration: underline;
+}  
+
+/* */
+
+</style>
+</head>
+
+
+
+<body class="body">
+
+<!-- search bar -->
+ <!-- navbar -->
+ 
+   <nav class="nav-wrapper transparent grey darken-3" >
+    <div class="container">
+      <a href="/" class="brand-logo">Bit Click</a>
+      <a href="#" class="sidenav-trigger" data-target="mobile-menu">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        {% include 'main/includes/navbar.html' %}
+      </ul>
+
+    </div>
+
+  </nav>
+
+
+    
+
+  <header>
+
+    {% include 'main/includes/messages.html' %}
+    <div class="landing-page">
+    <div class="page-content">
+      <h1>Buy And Sell Crypto With A Click</h1>
+      <p>
+        Over <b style="color: red">4 Million </b> clients are buying and selling their crpyto with ease on our platform. Welcome to the new World!!
+
+      </p>
+      {% if user.is_authenticated %}
+      <a href="#purchase1">BUY</a>
+      <a href="#purchase1">SELL</a>
+      {% else %}
+      <a href="/register">BUY</a>
+      <a href="/register">SELL</a>
+      {% endif %}
+
+    </div>
+  </div>
+</header>
+
+<!-- photo grid -->
+  <section class="container section scrollspy" id="photos">
+    <div class="row">
+      <div class="col s12 l4">
+          <img src="{% static 'bitcoin0.jpg' %}" alt="" class="responsive-img materialboxed">
+      </div>
+      <div class="col s12 l6 offset-l1">
+        <h2 class="indigo-text text-darken-4">
+
+          {% if user.is_authenticated %}
+        <a href="#purchase1">Bitcoin</h2>
+        <p>Trade in the world's largest and fastest running crypto currency.Buy/Sell BITCOIN now</p>
+        {% else %}
+        <a href="/register">Bitcoin</h2>
+        <p>Trade in the world's largest and fastest running crypto currency.Buy/Sell BITCOIN now</p>
+        {% endif %}
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 l4 offset-l1 push-l7">
+          <img src="{% static 'bitcoin1.jpg' %}" alt="" class="responsive-img materialboxed">
+      </div>
+      <div class="col s12 l6 offset-l1 pull-l5 right-align">
+        <h2 class="indigo-text text-darken-4">
+
+          {% if user.is_authenticated %}
+          <a href="#purchase1">Etherium</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+            {% else %}
+            <a href="/register">Etherium</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+              {% endif %}
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 l4">
+          <img src="{% static 'bitcoin4.jpg' %}" alt="" class="responsive-img materialboxed">
+      </div>
+      <div class="col s12 l6 offset-l1">
+        <h2 class="indigo-text text-darken-4">
+
+          <a href="/register">Bitcoin Cash</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- parallax -->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="{% static 'bitcoin3.jpg' %}" alt="" class="responsive-img">
+    </div>
+  </div>
+
+  <!-- services / tabs -->
+  <section class="section container scrollspy" id="service">
+    <div class="row">
+      <div class="col s12 l4">
+        <h2 class="indigo-text text-darken-4">What We do..</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+        <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+      </div>
+      <div class="col s12 l6 offset-l2">
+        <!-- tabs -->
+        <ul class="tabs">
+          <li class="tab col s6">
+            <a href="#photography" class="active indigo-text text-darken-4">Buy Crypto</a>
+          </li>
+          <li class="tab col s6">
+            <a href="#editing" class="indigo-text text-darken-4">Sell Crypto</a>
+          </li>
+        </ul>
+        <div id="photography" class="col s12">
+            <p class="flow-text indigo-text text-darken-4">Buy Crypto</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+            <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+        </div>
+        <div id="editing" class="col s12">
+            <p class="flow-text indigo-text text-darken-4">Sell Crypto</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+            <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- parallax -->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="{% static 'ladybit.jpg' %}" alt="" class="responsive-img">
+    </div>
+  </div>
+
+  <!-- contact form -->
+  <section class="section container scrollspy" id="contact">
+    <div class="row">
+      <div class="col s12 l5">
+        <h2 class="indigo-text text-darken-4">Get in Touch</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+        <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+        <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+      </div>
+      <div class="col s12 l5 offset-l2">
+        <form>
+          <div class="input-field">
+            <i class="material-icons prefix">email</i>
+            <input type="email" id="email" required="required">
+            <label for="email">Your Email</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">message</i>
+            <textarea id="message" class="materialize-textarea" cols="20" rows="20"></textarea>
+            <label for="message">Your Message</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">date_range</i>
+            <input type="text" id="date" class="datepicker" required="required">
+            <label for="date">Choose a date you need me for...</label>
+          </div>
+          
+          <div class="input-field center">
+            <button class="btn" max-width: 100%;>Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+<!-- Purchase -->
+ <div class="parallax-container">
+    <div class="parallax">
+      <img src="{% static 'login3.jpg' %}" alt="" class="responsive-img">
+    </div>
+  </div>
+
+
+  <section class="section container scrollspy" id="purchase1">
+    <div class="row">
+      <div class="col s12 l5">
+        <h2 class="indigo-text text-darken-4">Select Mode Of Payment</h2>
+        <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">account_balance</i>BANK TRANSFER <span class="new badge">4</span></div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">account_balance</i>MOBILE MONEY</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">account_balance</i>BITCOIN</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
+
+  <div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose Currency</option>
+      <option value="1">Cedies</option>
+      <option value="2">Naira</option>
+      
+    </select>
+    <label>Select Currency</label>
+  </div>
+      </div>
+      <div class="col s12 l5 offset-l2">
+
+        <form action="" method="post">
+          <div class="input-field">
+            <i class="material-icons prefix">account_balance</i>
+            <input type="text" id="numb1"  required="required" class="AmountCurrency">
+            <label for="numb1">Amount in Dollars</label>
+          </div>
+          
+
+
+          <div class="input-field">
+            <p>Services required:</p>
+            <p>
+              <label>
+                <input type="checkbox" class="check" id="buy" name="category" >
+                <span>Buy</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="check" name="category" >
+                <span>Sell</span>
+              </label>
+            </p>
+            
+          </div>
+          
+          <div class="input-field center">
+            <!-- Modal Triger -->
+            <div class="button-wrapper">
+              <button  id="trig" data-target="modal" class="btn pulse modal-trigger" disabled="true">Submit</button>
+            </div>
+            
+
+             <!-- SECOND MODAL -->
+            <!-- Modal Structure -->
+            
+            <div id="mkt-wrapper">
+            <div id="modal" class="modal bottom-sheet">
+              <div class="modal-content">
+                <h4>PAYMENT IS SECURED</h4>
+              
+                <li><a href="{% url 'main:create' %}" class="waves-effect waves-light btn modal-trigger">Join the Market</a></li>
+
+
+
+                {% for mark in market %}
+
+                
+                <ul class="collection">
+                  <li class="collection-item avatar">
+                  <img src="{{mark.image.url}}" alt="" class="circle">
+                  <!-- <i class="material-icons circle">folder</i> -->
+                    <span class="title">BTC</span>
+                    <p class="styling">{{mark.message}}
+                   </p>
+                   <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                 </li>
+              
+         </ul>
+         {% endfor %}
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">T&C</a>
+              </div>
+            </div>
+            </div>
+             
+           
+
+                       <!-- Modal Structure -->
+            <div id="modal" class="modal bottom-sheet">
+              <div class="modal-content">
+                <h4>PAYMENT IS SECURED</h4>
+                <p  id="messageDisplay">You can pay to any of the accounts below with <b style="color: red">NO CHARGES </b>  </p>
+
+
+                <ul class="collection">
+                  <li class="collection-item avatar">
+                  <i class="material-icons circle">folder</i>
+                    <span class="title">BANK</span>
+                    <p>123876780<br>
+                     4567
+                   </p>
+                   <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                 </li>
+                 <li class="collection-item avatar">
+                  <i class="material-icons circle">folder</i>
+                  <span class="title">MTN</span>
+                  <p>24858893 <br>
+                   45677
+                 </p>
+                 <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+               </li>
+               <li class="collection-item avatar">
+                <i class="material-icons circle green">insert_chart</i>
+                <span class="title">VODA CASH</span>
+                <p>4567890 <br>
+                 234567
+               </p>
+               <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+             </li>
+             <li class="collection-item avatar">
+              <i class="material-icons circle red">play_arrow</i>
+              <span class="title">TIGO CASH</span>
+              <p>24566788 <br>
+               56778
+             </p>
+             <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+           </li>
+         </ul>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">T&C</a>
+              </div>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+
+<div class="parallax-container">
+    <div class="parallax">
+      <img src="{% static 'login4.jpg' %}" alt="" class="responsive-img">
+    </div>
+  </div>
+
+
+
+<div class="container style="max-width:1500px; min-height:100% ">
+      {% block content %}
+
+      {% endblock %}
+     
+     </div>
+
+
+
+
+  <!-- footer -->
+  <footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5>About Us</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#">Facebook</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Twitter</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Linked In</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-4">
+      <div class="container center-align">&copy; 2020 Bit Click</div>
+    </div>
+  </footer>
+
+  <!-- Compiled and minified JavaScript -->
+  
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+
+      
+
+      $("#numb1").on("change",function(){
+        if(($(this).val() != "")  && $("input[name='category']").is(":checked")== true){
+
+        $("#trig").removeAttr("disabled");
+
+      }
+      
+      });
+
+      $("input[name='category']").on("change",function(){
+        if(($(this).val() != "")  && $("input[name='category']").is(":checked")== true){
+
+        $("#trig").removeAttr("disabled");
+
+      }
+
+      // purchase form administrators
+
+      $("#trig").on("click",function(){
+         $("#mkt-wrapper >div").removeAttr("id");
+        
+        var amount=$("#numb1").val();
+        $("#numb1").css({color:"red"});
+        var message= "<p> You have requested to buy " + "$" + amount + " worth of btc </p>";
+        var message2= "<p> You have requested to sell " + "$" + amount + " worth of btc </p>";
+
+        var checkedbox=$('.check');
+
+        if(checkedbox[0].checked){
+          $("#messageDisplay").prepend(message);
+          $("#messageDisplay").prev().removeAttr();
+          $("#trig").attr("disabled",true);
+        
+        }
+        if(checkedbox[1].checked){
+          $("#messageDisplay").prepend(message2);
+          $("#trig").attr("disabled",true);
+
+        }
+
+      });
+      });
+      
+      
+
+    
+
+      $('.sidenav').sidenav();
+      $('.materialboxed').materialbox();
+      $('.parallax').parallax();
+      $('.tabs').tabs();
+      $('.datepicker').datepicker({
+        disableWeekends: true,
+        yearRange: 1
+      });
+      $('.tooltipped').tooltip();
+      $('.scrollspy').scrollSpy();
+      $('.collapsible').collapsible();
+      $('select').formSelect();
+      $('.modal').modal();
+      $(".dropdown-trigger").dropdown();
+      
+
+
+      
+
+
+    });
+    </script>
+
+</body>
