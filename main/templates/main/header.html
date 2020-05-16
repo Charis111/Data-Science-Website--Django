@@ -14,110 +14,72 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
    
 
+<!-- CHARTIST. JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+
+
+
+
+<!-- Hotjar Tracking Code for 192.168.42.70 -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1785336,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
 <!-- slider/footer css style -->
 <style type="text/css">
-header{
-      background: url(static/bitcoin2.jpg); 
-      background-size: cover;
-      background-position: center;
-      min-height: 1000px;
-      top: 100%
-     /* opacity:0.85;*/
-      
-}
-@media screen and (max-width: 670px){
-  header{
-        min-height: 500px;
-      }
-
-      
-}
-.styling{
-  color: black;
-}
-.collection{
-  display: block;
-}
-.section{
-  padding-top: 4vw;
-  padding-bottom: 4vw;
-
-      
-}
-.tabs .indicator{
-  background-color: #1a237e;
-      
-}
-.tabs .tab a:focus, .tabs .tab a:focus.active{
-   background: transparent;
-     
-}
 
 
-.landing-page{
+
+    .zc-body {
+      background-color: #363b42;
+    }
+
+    .chart--container {
+      height: 100%;
+      width: 100%;
+      min-height: 530px;
+    }
+
+    .zc-ref {
+      display: none;
+    }
+
+
+a.btn{
+  margin-top: 30%;
+}
+.modal{
+ max-height:100%;
+ overflow:hidden;
+}
+
+input[type="submit"]{
   width: 100%;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
- 
+  margin-top: 50px;
 }
-.landing-page::after{
-  content: "";
+.modal-close{
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: url(bitcoin0.jpg) no-repeat;
-  background-size: cover;
-  opacity: .3;
-  animation: anim 25s linear infinite;
+  top:10px;
+  right:10px;
+  padding:0;
+  margin:0;
 }
-@keyframes anim {
-  50%{
-    transform: scale(2);
-  }
-  100%{
-    transform: scale(1);
-  }
+
+.opaque{
+  opacity: 0.5;
 }
-.page-content{
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 1;
-  width: 100%;
-  max-width: 800px;
-  text-align: center;
-  padding: 0 40px;
-  box-sizing: border-box;
-}
-.page-content h1{
-  padding-top: 140;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 50px;
-  font-weight: 900;
-  margin-bottom: 20px;
-}
-.page-content p{
-  color: #fff;
-  margin-bottom: 20px;
-}
-.page-content a{
-  display: inline-block;
-  text-decoration: none;
-  color: #ff7979;
-  border: 2px solid #ff7979;
-  text-transform: uppercase;
-  padding: 10px 20px;
-  transition: 0.4s linear;
-}
-.page-content a:hover{
-  color: #fff;
-  background: #ff7979;
-}
+
 
 a.grey-text:link {
   text-decoration: none;
@@ -135,7 +97,6 @@ a.grey-text:active {
   text-decoration: underline;
 }  
 
-/* */
 
 </style>
 </head>
@@ -146,167 +107,224 @@ a.grey-text:active {
 
 <!-- search bar -->
  <!-- navbar -->
- 
-   <nav class="nav-wrapper transparent grey darken-3" >
-    <div class="container">
-      <a href="/" class="brand-logo">Bit Click</a>
-      <a href="#" class="sidenav-trigger" data-target="mobile-menu">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul class="right hide-on-med-and-down">
+ <div class="navbar-fixed ">
+    <nav>
+      <div class="nav-wrapper white ">
+        <div class="container">
+        <a href="/" class="brand-logo purple-text">Data-Farm</a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons purple-text">menu</i></a>
+        <ul class="right hide-on-med-and-down">
         {% include 'main/includes/navbar.html' %}
       </ul>
+      </div>
+      </div>
+    </nav>
+  </div>
 
-    </div>
+<!-- SIDE BAR -->
+ {% if user.is_authenticated %}
+<ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div style="height: 170px" class="background">
+        <img src="{% static 'login.jpg' %}">
+      </div>
+      <a href="#user"><img class="circle" src="{% static 'bitcoin4.jpg' %}"></a>
+      <li><a href="/account"><i class="material-icons prefix">person</i>{{user.username|title}}</a></li>
+      <a href="#email"><span class="white-text email">{{user.email|title}}</span></a>
+    </div></li>
+    <li><a href="/logout">Logout</a></li>
+    <li><a href="#service">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">READY ?</a></li>
+    <li><a class="waves-effect waves-light btn-large " href="#getStarted" data-activates="dropdown1">GET STARTED</a></li>
+  </ul>
 
-  </nav>
+  {% else %}
 
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div style="height: 170px" class="background">
+        <img src="{% static 'login.jpg' %}">
+      </div>
+
+  <li><a class="purple-text modal-trigger" href="#register">Sign Up</a></li>
+  <li><a class="purple-text modal-trigger"  href="#login">Login</a></li>
+  <li><a class="purple-text" href="#service">Services</a></li>
+  <li><a class="purple-text" href="#contact">Contact</a></li>
+  </div></li>     
+</ul>
+
+  {% endif %}
+  
+
+
+<!-- HEADER SLIDER -->
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <img class="opaque" src="{% static 'data12.jpeg' %}"> <!-- random image -->
+        <div class="caption center-align">
+          <h3 class="blue-text text-darken-2">Welcome TO Data-Farm</h3>
+          <h5 class="blue-text text-darken-2">Bringing Meanings to Data.</h5>
+        </div>
+      </li>
+      <li>
+        <img class="opaque" src="{% static 'data13.jpeg' %}"> <!-- random image -->
+        <div class="caption left-align">
+          <h3 class="blue-text text-darken-2">Secured Data</h3>
+          <h5 class="blue-text text-darken-2">Data collected protected and not given to third party without your concern.</h5>
+        </div>
+      </li>
+      <li>
+        <img class="opaque" src="{% static 'data8.jpeg' %}"> <!-- random image -->
+        <div class="caption right-align">
+          <h3 class="blue-text text-darken-2">Extract Your Data</h3>
+          <h5 class="blue-text text-darken-2">Mine your data.</h5>
+        </div>
+      </li>
+      <li>
+        <img class="opaque" src="{% static 'data5.jpeg' %}"> <!-- random image -->
+        <div class="caption center-align">
+          <h3 class="blue-text text-darken-2">Team Of Expertees!</h3>
+          <h5 class="blue-text text-darken-2">We offer free analysis for your data.</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+      
 
     
+<div class="card-panel center">
+      <span class="blue-text text-darken-2 "> <h4> OUR SERVICES</h4>  </span>
+</div>
+    
+ 
 
-  <header>
-
-    {% include 'main/includes/messages.html' %}
-    <div class="landing-page">
-    <div class="page-content">
-      <h1>Buy And Sell Crypto With A Click</h1>
-      <p>
-        Over <b style="color: red">4 Million </b> clients are buying and selling their crpyto with ease on our platform. Welcome to the new World!!
-
-      </p>
-      {% if user.is_authenticated %}
-      <a href="#purchase1">BUY</a>
-      <a href="#purchase1">SELL</a>
-      {% else %}
-      <a href="/register">BUY</a>
-      <a href="/register">SELL</a>
-      {% endif %}
-
-    </div>
-  </div>
-</header>
 
 <!-- photo grid -->
-  <section class="container section scrollspy" id="photos">
+  <section class="container section scrollspy" id="service">
     <div class="row">
       <div class="col s12 l4">
-          <img src="{% static 'bitcoin0.jpg' %}" alt="" class="responsive-img materialboxed">
+          <img src="{% static 'data3.jpeg' %}" alt="" class="responsive-img materialboxed">
       </div>
       <div class="col s12 l6 offset-l1">
         <h2 class="indigo-text text-darken-4">
 
           {% if user.is_authenticated %}
-        <a href="#purchase1">Bitcoin</h2>
-        <p>Trade in the world's largest and fastest running crypto currency.Buy/Sell BITCOIN now</p>
+        <a href="#purchase1">Data Collection</h2>
+        <p> Data collection is the systematic approach to gathering and measuring information from a variety of sources to get a complete and accurate picture of an area of interest. Data collection enables a person or organization to answer relevant questions, evaluate outcomes and make predictions about future probabilities and trends.</p>
         {% else %}
-        <a href="/register">Bitcoin</h2>
-        <p>Trade in the world's largest and fastest running crypto currency.Buy/Sell BITCOIN now</p>
+        <a href="/register">Data Collection</h2>
+        <p> Data collection is the systematic approach to gathering and measuring information from a variety of sources to get a complete and accurate picture of an area of interest. Data collection enables a person or organization to answer relevant questions, evaluate outcomes and make predictions about future probabilities and trends.</p>
         {% endif %}
 
       </div>
     </div>
     <div class="row">
       <div class="col s12 l4 offset-l1 push-l7">
-          <img src="{% static 'bitcoin1.jpg' %}" alt="" class="responsive-img materialboxed">
+          <img src="{% static 'data9.jpeg' %}" alt="" class="responsive-img materialboxed">
       </div>
       <div class="col s12 l6 offset-l1 pull-l5 right-align">
         <h2 class="indigo-text text-darken-4">
 
           {% if user.is_authenticated %}
-          <a href="#purchase1">Etherium</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+          <a href="#purchase1">Machine Learning</h2>
+            <p>Machine learning (ML) is the study of computer algorithms that improve automatically through experience.[1] It is seen as a subset of artificial intelligence. Machine learning algorithms build a mathematical model based on sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to do so.[2][3]:.</p>
             {% else %}
-            <a href="/register">Etherium</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+            <a href="/register">Machine Learning</h2>
+              <p>Machine learning (ML) is the study of computer algorithms that improve automatically through experience.[1] It is seen as a subset of artificial intelligence. Machine learning algorithms build a mathematical model based on sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to do so.[2][3]:..</p>
               {% endif %}
 
       </div>
     </div>
     <div class="row">
       <div class="col s12 l4">
-          <img src="{% static 'bitcoin4.jpg' %}" alt="" class="responsive-img materialboxed">
+          <img src="{% static 'data7.jpeg' %}" alt="" class="responsive-img materialboxed">
       </div>
       <div class="col s12 l6 offset-l1">
         <h2 class="indigo-text text-darken-4">
 
-          <a href="/register">Bitcoin Cash</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+          <a href="/register">Data Visualization</h2>
+        <p>Data visualization is the graphic representation of data. It involves producing images that communicate relationships among the represented data to viewers of the images. This communication is achieved through the use of a systematic mapping between graphic marks and data values in the creation of the visualization. This mapping establishes how data values will be represented visually, determining how and to what extent a property of a graphic mark, such as size or color, will change to reflect changes in the value of a datum.</p>
       </div>
     </div>
   </section>
 
-  <!-- parallax -->
-  <div class="parallax-container">
-    <div class="parallax">
-      <img src="{% static 'bitcoin3.jpg' %}" alt="" class="responsive-img">
-    </div>
-  </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#9c27b0" fill-opacity="0.5" d="M0,96L60,122.7C120,149,240,203,360,192C480,181,600,107,720,90.7C840,75,960,117,1080,154.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
 
   <!-- services / tabs -->
-  <section class="section container scrollspy" id="service">
+  <section class="section container scrollspy" id="">
     <div class="row">
       <div class="col s12 l4">
-        <h2 class="indigo-text text-darken-4">What We do..</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
-        <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+        <h2 class="blue-text text-darken-2">What We do..</h2>
+        <p>We provide the best data analysis,infrences and visualization work</p>
+        <p>We bring hope and give meanings to your business data</p>
       </div>
+
       <div class="col s12 l6 offset-l2">
         <!-- tabs -->
         <ul class="tabs">
           <li class="tab col s6">
-            <a href="#photography" class="active indigo-text text-darken-4">Buy Crypto</a>
+            <a href="#dataAnalysis" class="active blue-text text-darken-2"> Data Analysis</a>
           </li>
           <li class="tab col s6">
-            <a href="#editing" class="indigo-text text-darken-4">Sell Crypto</a>
+            <a href="#dataScience" class="blue-text text-darken-2">Data Science</a>
           </li>
+      
         </ul>
-        <div id="photography" class="col s12">
-            <p class="flow-text indigo-text text-darken-4">Buy Crypto</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
-            <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+        <div id="dataAnalysis" class="col s12">
+            <p class="flow-text blue-text text-darken-2">Data Analysis</p>
+            <p class="blue-text text-darken-2">Data analysis is a process of inspecting, cleansing, transforming and modeling data with the goal of discovering useful information, informing conclusion and supporting decision-making. Data analysis has multiple facets and approaches, encompassing diverse techniques under a variety of names, and is used in different business, science, and social science domains. In today's business world, data analysis plays a role in making decisions more scientific and helping businesses operate more effectively</p>
+            
         </div>
-        <div id="editing" class="col s12">
-            <p class="flow-text indigo-text text-darken-4">Sell Crypto</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
-            <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+        <div id="dataScience" class="col s12">
+            <p class="flow-text blue-text text-darken-2">Data Science</p>
+            <p class="blue-text text-darken-2">Data science is an inter-disciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from many structural and unstructured data. Data science is related to data mining and big data.</p>
+            <p class="blue-text text-darken-2">Data science is related to data mining and big data.
+
+          Data science is a "concept to unify statistics, data analysis, machine learning and their related methods" in order to "understand and analyze actual phenomena" with data. It employs techniques and theories drawn from many fields within the context of mathematics, statistics, computer science, and information science.</p>
         </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- parallax -->
-  <div class="parallax-container">
-    <div class="parallax">
-      <img src="{% static 'ladybit.jpg' %}" alt="" class="responsive-img">
-    </div>
-  </div>
+  
 
   <!-- contact form -->
   <section class="section container scrollspy" id="contact">
     <div class="row">
       <div class="col s12 l5">
-        <h2 class="indigo-text text-darken-4">Get in Touch</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
-        <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
-        <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+        <h2 class="indigo-text text-darken-4">Send US Your Message</h2>
+        <!-- googl maps API -->
+        <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31730.671903833307!2d-2.500591549409167!3d6.219614011843472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc34d68f3b93b9d%3A0xfe35ce6e107ee5b3!2sWiawso!5e0!3m2!1sen!2sgh!4v1587619357497!5m2!1sen!2sgh" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></p>
+
+        
       </div>
       <div class="col s12 l5 offset-l2">
-        <form>
+        <div class="container">
+         
+       
+        </div>
+        <form action="{% url 'main:zender' %}" method="POST">
+          {% csrf_token %}
+
           <div class="input-field">
             <i class="material-icons prefix">email</i>
-            <input type="email" id="email" required="required">
-            <label for="email">Your Email</label>
+            <input id="em" type="email" name="email1"/>
+            <label for="em">Email</label>
+           
           </div>
           <div class="input-field">
             <i class="material-icons prefix">message</i>
-            <textarea id="message" class="materialize-textarea" cols="20" rows="20"></textarea>
-            <label for="message">Your Message</label>
+            <textarea id="message" class="materialize-textarea" cols="20" rows="20" name="yMessage"></textarea>
+            <label for="message" >Your Message</label>
           </div>
           <div class="input-field">
             <i class="material-icons prefix">date_range</i>
-            <input type="text" id="date" class="datepicker" required="required">
+            <input name="date" type="text" id="date" class="datepicker" required="required">
             <label for="date">Choose a date you need me for...</label>
           </div>
           
@@ -318,174 +336,80 @@ a.grey-text:active {
     </div>
   </section>
 
-<!-- Purchase -->
- <div class="parallax-container">
-    <div class="parallax">
-      <img src="{% static 'login3.jpg' %}" alt="" class="responsive-img">
-    </div>
-  </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#9c27b0" fill-opacity="0.5" d="M0,256L60,229.3C120,203,240,149,360,160C480,171,600,245,720,256C840,267,960,213,1080,165.3C1200,117,1320,75,1380,53.3L1440,32L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+
+</svg>
 
 
-  <section class="section container scrollspy" id="purchase1">
+
+
+
+
+  <section class="section container scrollspy" id="getStarted">
     <div class="row">
       <div class="col s12 l5">
-        <h2 class="indigo-text text-darken-4">Select Mode Of Payment</h2>
-        <ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">account_balance</i>BANK TRANSFER <span class="new badge">4</span></div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">account_balance</i>MOBILE MONEY</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">account_balance</i>BITCOIN</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
+    
+        <img class="materialboxed" width="500" src="{% static 'data14.jpeg' %}">
+    </div>
 
-  <div class="input-field col s12">
-    <select>
-      <option value="" disabled selected>Choose Currency</option>
-      <option value="1">Cedies</option>
-      <option value="2">Naira</option>
-      
-    </select>
-    <label>Select Currency</label>
-  </div>
-      </div>
+    
+
       <div class="col s12 l5 offset-l2">
+         <div class="container">
+         
+        </div>
 
-        <form action="" method="post">
-          <div class="input-field">
-            <i class="material-icons prefix">account_balance</i>
-            <input type="text" id="numb1"  required="required" class="AmountCurrency">
-            <label for="numb1">Amount in Dollars</label>
-          </div>
+
+
+         <form  action="{% url 'main:send' %}" method="POST" target="_blank">
+          {% csrf_token %}
           
-
-
           <div class="input-field">
-            <p>Services required:</p>
-            <p>
-              <label>
-                <input type="checkbox" class="check" id="buy" name="category" >
-                <span>Buy</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="check" name="category" >
-                <span>Sell</span>
-              </label>
-            </p>
+            <i class="material-icons prefix">email</i>
+            <input type="email" name="email" required="required">
+            <label for="email">Your Email</label>
+          </div>
+
+              
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input name="file" type="file" multiple >
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" name="file" placeholder="Upload one or more files">
+
+            </div>           
+          </div>
+ 
             
-          </div>
-          
+     
+
+          <div class="input-field">
+                <i class="material-icons prefix">mode_edit</i>
+                <input type="text" name="message" id="icon_prefix2"></input>
+                <label for="icon_prefix2">Type Your Message here</label>
+                <textarea cols="35" rows="8" name="content">
+                </textarea>
+              </div>
           <div class="input-field center">
-            <!-- Modal Triger -->
+            <!-- Modal Triger -->           
             <div class="button-wrapper">
-              <button  id="trig" data-target="modal" class="btn pulse modal-trigger" disabled="true">Submit</button>
+              <button type="submit" class="btn pulse">Submit</button>
+
             </div>
             
-
-             <!-- SECOND MODAL -->
-            <!-- Modal Structure -->
-            
-            <div id="mkt-wrapper">
-            <div id="modal" class="modal bottom-sheet">
-              <div class="modal-content">
-                <h4>PAYMENT IS SECURED</h4>
-              
-                <li><a href="{% url 'main:create' %}" class="waves-effect waves-light btn modal-trigger">Join the Market</a></li>
-
-
-
-                {% for mark in market %}
-
-                
-                <ul class="collection">
-                  <li class="collection-item avatar">
-                  <img src="{{mark.image.url}}" alt="" class="circle">
-                  <!-- <i class="material-icons circle">folder</i> -->
-                    <span class="title">BTC</span>
-                    <p class="styling">{{mark.message}}
-                   </p>
-                   <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-              
-         </ul>
-         {% endfor %}
-              </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">T&C</a>
-              </div>
-            </div>
-            </div>
-             
-           
-
-                       <!-- Modal Structure -->
-            <div id="modal" class="modal bottom-sheet">
-              <div class="modal-content">
-                <h4>PAYMENT IS SECURED</h4>
-                <p  id="messageDisplay">You can pay to any of the accounts below with <b style="color: red">NO CHARGES </b>  </p>
-
-
-                <ul class="collection">
-                  <li class="collection-item avatar">
-                  <i class="material-icons circle">folder</i>
-                    <span class="title">BANK</span>
-                    <p>123876780<br>
-                     4567
-                   </p>
-                   <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-                 <li class="collection-item avatar">
-                  <i class="material-icons circle">folder</i>
-                  <span class="title">MTN</span>
-                  <p>24858893 <br>
-                   45677
-                 </p>
-                 <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-               </li>
-               <li class="collection-item avatar">
-                <i class="material-icons circle green">insert_chart</i>
-                <span class="title">VODA CASH</span>
-                <p>4567890 <br>
-                 234567
-               </p>
-               <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-             </li>
-             <li class="collection-item avatar">
-              <i class="material-icons circle red">play_arrow</i>
-              <span class="title">TIGO CASH</span>
-              <p>24566788 <br>
-               56778
-             </p>
-             <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-           </li>
-         </ul>
-              </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">T&C</a>
-              </div>
-            </div>
-
-
           </div>
         </form>
+     
+
+       
       </div>
     </div>
   </section>
-  
+ 
 
-<div class="parallax-container">
-    <div class="parallax">
-      <img src="{% static 'login4.jpg' %}" alt="" class="responsive-img">
-    </div>
-  </div>
 
 
 
@@ -498,15 +422,160 @@ a.grey-text:active {
 
 
 
+<!-- FLOATEING ACTION BUTTON -->
+<div class="fixed-action-btn " id="floatingBasic">
+    <a class="btn-floating btn-large purple">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="tooltipped btn-floating red" data-position="left" data-tooltip="Accra"><i class="material-icons">place</i></a></li>
+
+      <li><a class="tooltipped btn-floating yellow darken-1" data-position="left" data-tooltip="Share"><i class="material-icons">share</i></a></li>
+
+      <li><a class=" tooltipped btn-floating green" data-position="left" data-tooltip="Email"><i class="material-icons">email</i></a></li>
+
+      <li><a class="tooltipped btn-floating blue" data-position="left" data-tooltip="Call"><i class="material-icons">local_phone</i></a></li>
+    </ul>
+  </div>
+
+  <!-- login FORM -->
+<div id="login" class="modal ">
+  <h5 class="modal-close">&#10005;</h5>
+  <div class="modal-content center">
+    <h4>Login Form</h4>
+    <br>
+
+    <form action="{% url 'main:login' %}" method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input type="text" id="name" name="username">
+        <label for="name">Username</label>
+      </div>
+      <br>
+
+      <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        <input type="password" id="pass" name="password">
+        <label for="pass">Password</label>
+      </div>
+      <br>
+
+      <div class="left" style="margin-left:20px;">
+        <div class="input-field">
+        <input type="checkbox" class="check">
+        <span>Remember Me</span>
+         </div>
+      </div>
+      <br>
+      
+      <input type="submit" value="Login" class="btn btn-large">
+     
+    </form>
+    Don't have an account? <a href="/register" target="blank"><strong>register here</strong></a>!
+  </div>
+</div>
+
+
+<div id="register" class="modal ">
+  <h5 class="modal-close">&#10005;</h5>
+  <div class="modal-content center">
+    <h4>Sign Up Form</h4>
+    <br>
+
+    <form action="{% url 'main:register' %}" method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input type="text" id="name" name="username">
+        <label for="name">Username</label>
+      </div>
+      <br>
+
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input type="email" id="email" name="email1">
+        <label for="email">Email</label>
+      </div>
+      <br>
+
+      <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        <input type="password" id="pass" name="password">
+        <label for="pass">Password</label>
+      </div>
+      <br>
+
+      <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        <input type="password" id="pass2" name="password2">
+        <label for="pass2">Repeat Password</label>
+      </div>
+      <br>
+
+    
+      
+      <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Sign Up</button>
+      
+    </form>
+    If you already have an account <a href="/login" target="blank"><strong class="btn btn-outline-info">login</strong></a> instead.
+  </div>
+</div>
+
+
+
+
+<!-- <div class="container">
+  <div class="row">
+        <div class="col s12 m6">
+          <div class="card hoverable">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>
+                <div class="ct-chart ct-perfect-fourth"></div>
+
+              </p>
+            </div>
+        
+          </div>
+        </div>
+      </div>
+</div>
+ -->
+<!-- <div class="container">
+  <div class="row">
+        <div class="col s12 m6">
+          <div class="card hoverable">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>
+                <div id="myChart"></div>
+
+              </p>
+            </div>
+        
+          </div>
+        </div>
+      </div>
+  </div>
+ -->
+
+  <!--  <div id="myChart" class="chart--container"><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div> -->
+
+
 
   <!-- footer -->
-  <footer class="page-footer grey darken-3">
+  <footer class="page-footer purple lighten-3">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
           <h5>About Us</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+          <p>We are a group of data analytics that seeks to give clearity to dumb data.</p>
+          <p>Our TEN years of working with the best analytical tools has granted us several awards in the corporate world.</p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Connect</h5>
@@ -520,7 +589,8 @@ a.grey-text:active {
       </div>
     </div>
     <div class="footer-copyright grey darken-4">
-      <div class="container center-align">&copy; 2020 Bit Click</div>
+      <div class="container center-align">&copy; 2020 Data-Farm</div>
+      <div class="container center-align"><a href="">Built By Abi&I</a></div>
     </div>
   </footer>
 
@@ -529,56 +599,366 @@ a.grey-text:active {
   
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script>M.AutoInit();</script>
+
   <script>
     $(document).ready(function(){
+      // function for floating action button
 
-      
+      var elementB=document.getElementById('floatingBasic');
+      var instance=M.FloatingActionButton.init(elementB);
 
-      $("#numb1").on("change",function(){
-        if(($(this).val() != "")  && $("input[name='category']").is(":checked")== true){
 
-        $("#trig").removeAttr("disabled");
 
-      }
-      
-      });
+        //     var data = {
+        //   labels: [ {% for markt  in market %}'{{markt.countries}}', {% endfor %}],
+        //   series: [
+        //     [{% for markt  in market %}'{{markt.numbers}}', {% endfor %}]
+        //   ]
+         
+        // };
+        // var options = {
+        //   labelInterpolationFnc: function(value) {
+        //     return value[0]
+        //     }
+        // };
+  
+    
 
-      $("input[name='category']").on("change",function(){
-        if(($(this).val() != "")  && $("input[name='category']").is(":checked")== true){
+  
+        // new Chartist.Pie('#chart1', data, options);
+        // new Chartist.Bar('#chart2', data, options);
 
-        $("#trig").removeAttr("disabled");
 
-      }
 
-      // purchase form administrators
+        var data = {
+  labels: [{% for markt  in market %}'{{markt.countries}}', {% endfor %}],
+  series: [{% for markt  in market %}'{{markt.numbers}}', {% endfor %}]
+};
 
-      $("#trig").on("click",function(){
-         $("#mkt-wrapper >div").removeAttr("id");
-        
-        var amount=$("#numb1").val();
-        $("#numb1").css({color:"red"});
-        var message= "<p> You have requested to buy " + "$" + amount + " worth of btc </p>";
-        var message2= "<p> You have requested to sell " + "$" + amount + " worth of btc </p>";
+var options = {
+  labelInterpolationFnc: function(value) {
+    return value[0]
+  }
+};
 
-        var checkedbox=$('.check');
 
-        if(checkedbox[0].checked){
-          $("#messageDisplay").prepend(message);
-          $("#messageDisplay").prev().removeAttr();
-          $("#trig").attr("disabled",true);
-        
+
+var responsiveOptions = [
+  ['screen and (min-width: 640px)', {
+    chartPadding: 30,
+    labelOffset: 100,
+    labelDirection: 'explode',
+    labelInterpolationFnc: function(value) {
+      return value;
+    }
+  }],
+  ['screen and (min-width: 1024px)', {
+    labelOffset: 80,
+    chartPadding: 20
+  }]
+];
+
+new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
+    
+zingchart.render({
+    id: 'myChart',
+    data: {
+      type: 'line',
+      series: [
+        { values: [54,23,34,23,43] },
+        { values: [10,15,16,20,40] }
+      ]
+    }
+  });
+
+
+
+
+ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+    let chartConfig = {
+      theme: 'classic',
+      graphset: [{
+          type: 'hbar',
+          backgroundColor: '#363b42',
+          borderColor: '#111a21',
+          borderWidth: '2px',
+          height: '50%',
+          title: {
+            text: 'Company Performance',
+            marginTop: '10px',
+            marginLeft: '20px',
+            backgroundColor: 'none',
+            fontSize: '18px',
+            shadow: false,
+            textAlign: 'left'
+          },
+          plot: {
+            barsOverlap: '100%',
+            barWidth: '17px',
+            thousandsSeparator: ',',
+            animation: {
+              effect: 'ANIMATION_SLIDE_BOTTOM'
+            }
+          },
+          plotarea: {
+            margin: '50px 25px 20px 25px'
+          },
+          scaleX: {
+            values: ['Puma', 'Converse', 'Adidas', 'Nike'],
+            guide: {
+              visible: false
+            },
+            item: {
+              color: '#fff',
+              offsetX: '210px',
+              textAlign: 'left',
+              width: '200px'
+            },
+            lineColor: 'none',
+            tick: {
+              visible: false
+            }
+          },
+          scaleY: {
+            guide: {
+              visible: false
+            },
+            item: {
+              visible: false
+            },
+            lineColor: 'none',
+            tick: {
+              visible: false
+            }
+          },
+          series: [{
+              values: [103902, 112352, 121823, 154092],
+              tooltip: {
+                shadow: false
+              },
+              hoverState: {
+                visible: false
+              },
+              styles: [{
+                  backgroundColor: '#009016'
+                },
+                {
+                  backgroundColor: '#017790'
+                },
+                {
+                  backgroundColor: '#ee5b18'
+                },
+                {
+                  backgroundColor: '#c94742'
+                }
+              ],
+              tooltipText: '$%node-value',
+              zIndex: 2
+            },
+            {
+              values: [300000, 300000, 300000, 300000],
+              valueBox: {
+                text: '$%data-rvalues',
+                fontColor: '#fff',
+                fontSize: '10px',
+                offsetX: '3px',
+                offsetY: '-1px',
+                placement: 'top-in',
+                textAlign: 'right',
+                visible: true
+              },
+              backgroundColor: '#000',
+              dataRvalues: [103902, 112352, 121823, 154092],
+              maxTrackers: 0,
+              zIndex: 1
+            }
+          ]
+        },
+        {
+          type: 'line',
+          backgroundColor: '#363b42',
+          borderColor: '#111a21',
+          borderWidth: '2px',
+          height: '50%',
+          y: '50%',
+          legend: {
+            margin: 'auto auto 10px auto',
+            backgroundColor: 'none',
+            borderWidth: '0px',
+            item: {
+              padding: '3px',
+              fontColor: '#eee',
+              fontSize: '12px'
+            },
+            layout: 'float',
+            marker: {
+              lineWidth: '2px',
+              showLine: 'true',
+              size: '4px'
+            },
+            shadow: false,
+            width: '75%',
+            x: '25%'
+          },
+          plot: {
+            tooltip: {
+              visible: false
+            },
+            animation: {
+              effect: 'ANIMATION_SLIDE_BOTTOM'
+            },
+            tooltipText: 'Items Sold: %v'
+          },
+          plotarea: {
+            margin: '20 30 75 55'
+          },
+          scaleX: {
+            values: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            guide: {
+              visible: false
+            },
+            item: {
+              paddingTop: '5px',
+              fontColor: '#FFFFFF',
+              fontSize: '10px'
+            },
+            lineColor: '#fff',
+            lineWidth: '1px',
+            tick: {
+              lineColor: '#fff',
+              lineWidth: '1px'
+            }
+          },
+          scaleY: {
+            values: '0:100:25',
+            guide: {
+              lineColor: '#7d8285',
+              lineStyle: 'solid',
+              lineWidth: '2px'
+            },
+            item: {
+              paddingRight: '5px',
+              fontColor: '#fff',
+              fontSize: '10px'
+            },
+            lineColor: 'none',
+            tick: {
+              visible: false
+            }
+          },
+          crosshairX: {
+            scaleLabel: {
+              fontColor: '#000000'
+            }
+          },
+          series: [{
+              text: 'Nike',
+              values: [25, 15, 26, 21, 24, 26, 33, 25, 15, 25, 22, 24],
+              legendMarker: {
+                type: 'circle',
+                borderColor: '#c94742',
+                size: '5px'
+              },
+              lineColor: '#c94742',
+              lineWidth: '2px',
+              marker: {
+                backgroundColor: '#c94742',
+                borderWidth: '0px',
+                shadow: false,
+                size: '3px'
+              },
+              palette: 3,
+              shadow: false
+            },
+            {
+              text: 'Adidas',
+              values: [42, 43, 30, 50, 31, 48, 55, 46, 48, 32, 50, 38],
+              legendMarker: {
+                type: 'circle',
+                borderColor: '#ee5b18',
+                size: '5px'
+              },
+              lineColor: '#ee5b18',
+              lineWidth: '2px',
+              marker: {
+                backgroundColor: '#ee5b18',
+                borderWidth: '0px',
+                shadow: false,
+                size: '3px'
+              },
+              palette: 2,
+              shadow: false,
+              visible: true
+            },
+            {
+              text: 'Converse',
+              values: [51, 53, 47, 60, 48, 52, 75, 52, 55, 47, 60, 48],
+              legendMarker: {
+                type: 'circle',
+                borderColor: '#017790',
+                size: '5px'
+              },
+              lineColor: '#017790',
+              lineWidth: '2px',
+              marker: {
+                backgroundColor: '#017790',
+                borderWidth: '0px',
+                shadow: false,
+                size: '3px'
+              },
+              palette: 1,
+              shadow: false,
+              visible: true
+            },
+            {
+              text: 'Puma',
+              values: [69, 68, 54, 48, 70, 74, 98, 70, 72, 68, 49, 69],
+              legendMarker: {
+                type: 'circle',
+                borderColor: '#009016',
+                size: '5px'
+              },
+              lineColor: '#009016',
+              lineWidth: '2px',
+              marker: {
+                backgroundColor: '#009016',
+                borderWidth: '0px',
+                shadow: false,
+                size: '3px'
+              },
+              palette: 0,
+              shadow: false
+            }
+          ]
         }
-        if(checkedbox[1].checked){
-          $("#messageDisplay").prepend(message2);
-          $("#trig").attr("disabled",true);
+      ]
+    };
 
-        }
+    zingchart.render({
+      id: 'myChart',
+      data: chartConfig,
+      height: '100%',
+      width: '100%',
+    });
 
-      });
-      });
-      
-      
+       {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success'%}
+                M.toast({html: "{{message}}", classes: 'purple rounded', displayLength:2000});
+            {% elif message.tags == 'info'%}
+                M.toast({html: "{{message}}", classes: 'purple rounded', displayLength:2000});
+            {% elif message.tags == 'warning'%}
+                M.toast({html: "{{message}}", classes: 'orange rounded', displayLength:10000});
+            {% elif message.tags == 'error'%}
+                M.toast({html: "{{message}}", classes: 'red rounded', displayLength:10000});
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
+    
+
+     
     
 
       $('.sidenav').sidenav();
@@ -587,19 +967,18 @@ a.grey-text:active {
       $('.tabs').tabs();
       $('.datepicker').datepicker({
         disableWeekends: true,
-        yearRange: 1
+        yearRange: 1,
+        format:'yyyy-mm-dd'
       });
       $('.tooltipped').tooltip();
       $('.scrollspy').scrollSpy();
       $('.collapsible').collapsible();
       $('select').formSelect();
       $('.modal').modal();
-      $(".dropdown-trigger").dropdown();
+      $(".dropdown-trigger").dropdown({ hover: false });
+      $('.slider').slider();
+     
       
-
-
-      
-
 
     });
     </script>

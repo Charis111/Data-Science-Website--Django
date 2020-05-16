@@ -19,9 +19,13 @@ class NewUserForm(UserCreationForm):
 
 
 
-# create add market
+class DataSubmitForm(forms.Form):
+    email = forms.EmailField()
+    file = forms.FileField()
+    body = forms.CharField(widget=forms.Textarea)
+    
 
-class Join_market(forms.ModelForm):
-    class Meta:
-        model = models.Market
-        fields = ['image', 'message']
+
+   
+
+    
